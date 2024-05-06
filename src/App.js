@@ -15,7 +15,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(0);
-  const [isDataEnd, setIsEndData] = useState(false);
+  const [isDataEnd, setIsDataEnd] = useState(false);
   const [totalItems, setTotalItems] = useState(0);
   const roleFilter = useRef([]);
   const experienceFilter = useRef(null);
@@ -31,7 +31,7 @@ function App() {
     setError(null);
     let offset = page * 9;
     if (offset > totalItems) {
-      setIsEndData(true);
+      setIsDataEnd(true);
       setIsLoading(false);
       window.removeEventListener("scroll", handleScroll);
       return;
@@ -152,7 +152,7 @@ function App() {
           .includes(searchKeyword.toLowerCase());
       });
     }
-    
+
     setFilteredItems(newItem);
   };
 
