@@ -1,5 +1,7 @@
 .App {
-  text-align: center;
+  text-align: start;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .App-logo {
@@ -28,10 +30,107 @@
   color: #61dafb;
 }
 
+.col {
+  display: flex;
+  justify-content: center;
+}
+
+.company-logo {
+  height: 60px;
+  width: 60px;
+}
+
+.about-company {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+
+.cardBody {
+  display: flex;
+  height: 600px !important;
+  width: 360px !important;
+  border-radius: 20px !important;
+  padding: 5px !important;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px !important;
+}
+
+.min-exp-heading {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+  color: #8b8b8b;
+}
+
+.min-exp-text {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.company-name {
+  color: #8b8b8b;
+  letter-spacing: 1px;
+  font-size: 13px;
+  margin-bottom: 2px !important;
+}
+
+.job-role {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 0px !important;
+}
+
+.easy-apply-btn {
+  background-color: rgb(85, 239, 196) !important;
+  color: black !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  height: 54px !important;
+  border: 1px solid rgb(85, 239, 196) !important;
+  margin: 0px 10px 10px 10px;
+}
+
+.estimated-salary {
+  font-weight: 400;
+  font-size: 14px !important;
+  margin: 8px 0 !important;
+  color: rgb(77, 89, 106);
+  /* font-family: __LexendFont_7838d2, __LexendFont_Fallback_7838d2; */
+  line-height: 1.43;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+
+.about {
+  height: 300px;
+  overflow: hidden;
+  mask-image: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+}
+
+.view-job {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  position: relative;
+  top: -20px;
+}
+
+.data-state {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
