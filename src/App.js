@@ -1,7 +1,8 @@
 import "./App.css";
 import React, { useState, useEffect, useRef } from "react";
-import { Row, Col, Card, Button, Form } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 import Select from "react-select";
+import JobCard from "./JobCard.js"
 import {
   locationOptions,
   experienceOptions,
@@ -99,14 +100,12 @@ function App() {
 
     let newItem = items;
     if (roleArray.length !== 0) {
-      console.log("a");
       const selectedLabels = roleArray.map((item) => item.label.toLowerCase());
       newItem = newItem.filter((newVal) => {
         return selectedLabels.includes(newVal.jobRole.toLowerCase());
       });
     }
     if (experience) {
-      console.log("b");
       newItem = newItem.filter((newVal) => {
         return (
           experience.value >= newVal.minExp && experience.value <= newVal.maxExp
@@ -114,7 +113,6 @@ function App() {
       });
     }
     if (locationArray.length !== 0) {
-      console.log("c");
       const selectedLabels = locationArray.map((item) =>
         item.label.toLowerCase()
       );
@@ -127,7 +125,6 @@ function App() {
         });
       }
       if (selectedLabels.includes("in-office")) {
-        console.log("d");
         newItem.filter((newVal) => {
           if (newVal.location.toLowerCase() !== "remote") {
             tempItems.push(newVal);
@@ -138,14 +135,12 @@ function App() {
       newItem = [...tempItems];
     }
     if (basePay) {
-      console.log("e");
       newItem = newItem.filter((newVal) => {
         return newVal.minJdSalary >= basePay.value;
       });
     }
 
     if (searchKeyword.length !== 0) {
-      console.log("f");
       newItem = newItem.filter((newVal) => {
         return newVal.companyName
           .toLowerCase()
@@ -244,62 +239,7 @@ function App() {
       <Row xs={1} md={3} className="g-4">
         {filteredItems.map((item, idx) => (
           <Col key={idx} className="col">
-            <Card className="cardBody">
-              <Card.Body>
-                <div style={{ display: "flex", gap: "0.5rem" }}>
-                  <img src={item.logoUrl} className="company-logo"></img>
-                  <div>
-                    <div>
-                      <h3 className="company-name">{item.companyName}</h3>
-                      <h2 className="job-role">
-                        {item.jobRole &&
-                          `${item.jobRole
-                            .charAt(0)
-                            .toUpperCase()}${item.jobRole.slice(1)}`}
-                      </h2>
-                    </div>
-                    <span style={{ fontSize: "11px" }}>
-                      {item.location &&
-                        `${item.location
-                          .charAt(0)
-                          .toUpperCase()}${item.location.slice(1)}`}
-                    </span>
-                  </div>
-                </div>
-                <p className="estimated-salary">
-                  Estimated Salary:{" "}
-                  {item.salaryCurrencyCode === "USA" ? "$" : "₹"}{" "}
-                  {item.minJdSalary} -{" "}
-                  {item.salaryCurrencyCode === "USA" ? "$" : "₹"}{" "}
-                  {item.maxJdSalary} LPA
-                </p>
-
-                <div className="about">
-                  <p>About Company:</p>
-                  <Card.Text>
-                    <p>{item.jobDetailsFromCompany}</p>
-                  </Card.Text>
-                </div>
-                <div className="view-job">
-                  <a
-                    href={item.jdLink}
-                    style={{ color: "#4943da", textDecoration: "none" }}
-                  >
-                    View Job
-                  </a>
-                </div>
-
-                {item.minExp && (
-                  <div className="experience-container">
-                    <p className="min-exp-heading">Minimum Experience</p>
-                    <p className="min-exp-text">{item.minExp} years</p>
-                  </div>
-                )}
-              </Card.Body>
-              <Button className="easy-apply-btn" size="lg">
-                Easy Apply
-              </Button>
-            </Card>
+            <JobCard {...item}></JobCard>
           </Col>
         ))}
       </Row>
