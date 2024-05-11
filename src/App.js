@@ -82,7 +82,14 @@ function App() {
     fetchData();
   }, []);
 
+  const isScrollable = () => {
+    return document.documentElement.scrollHeight > window.innerHeight;
+  };
+  
   useEffect(() => {
+    if (!isScrollable()) {
+      fetchData();
+    }
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isLoading]);
